@@ -17,12 +17,12 @@ public class task01 {
             nullPointerException();
 
         } catch (NullPointerException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         try {
             arrayIndexOutOfBoundsException();
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
         try {

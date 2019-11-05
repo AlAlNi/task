@@ -66,7 +66,7 @@ public class OsMain {
 
                 break;
             } catch (MinChException e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
         }
 

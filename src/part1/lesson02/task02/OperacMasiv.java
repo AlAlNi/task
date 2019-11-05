@@ -29,7 +29,7 @@ public class OperacMasiv {
                     System.out.println(dCh.get(i));
                 }
             } catch (MyException e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
         }
     }

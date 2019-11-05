@@ -8,7 +8,7 @@ public class MyException extends Exception {
     }
 
     public String toString() {
-        return "Отрицательное число[" + detail + "]";
+        return "Отрицательное число [" + detail + "]";
     }
 }
 
