@@ -34,7 +34,7 @@ public class task01 {
 
     }
 
-    public static void nullPointerException() throws NullPointerException {
+    private static void nullPointerException() throws NullPointerException {
 
 
         if (str[0].equals("")) {
@@ -42,18 +42,16 @@ public class task01 {
         }
     }
 
-    public static void arrayIndexOutOfBoundsException() throws ArrayIndexOutOfBoundsException {
+    private static void arrayIndexOutOfBoundsException() throws ArrayIndexOutOfBoundsException {
 
         System.out.println(str[1]);
 
     }
 
-    public static void myNetRus() throws MyNetRus {
+    private static void myNetRus() throws MyNetRus {
 
         str[0] = "Hello, World!";
-        if (!str[0].equals("a")) {
-            throw new MyNetRus(str[0]);
-        }
+        throw new MyNetRus(str[0]);
 
 
     }
