@@ -19,9 +19,9 @@ public class Sorter2 implements Sorter {
                 if (age1 == age2 && p1.getName().equals(p2.getName())) throw new DubNameAgeException(p1, p2);
             } catch (DubNameAgeException e) {
 //                System.out.println(e.getMessage());
-            } finally {
-                return age2 - age1;
             }
+            return age2 - age1;
+
         }).thenComparing(Person::getName));
         return new Date().getTime() - start;
     }
