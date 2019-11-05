@@ -7,7 +7,7 @@
 
 package part1.lesson02.task01;
 
-public class task01 {
+public class HelloWorld {
     private static String[] str = new String[1];
 
     public static void main(String[] args) throws MyNetRus {

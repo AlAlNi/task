@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class task02 {
+public class GenChis {
 
 
     public static void main(String[] args) throws MyException {

@@ -22,7 +22,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class OsMain {
+public class OsnMain {
     private static ArrayList<Person> obPerson = new ArrayList<>();
     private static int nA;
     private static ArrayList<Person> obNameMan = new ArrayList<>();
