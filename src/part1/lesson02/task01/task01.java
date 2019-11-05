@@ -8,37 +8,53 @@
 package part1.lesson02.task01;
 
 public class task01 {
+    private static String[] str = new String[1];
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MyNetRus {
 
-        String str[] = new String[1] ;
 
         try {
+            nullPointerException();
 
-            if (str[0].equals("")) {
-                str[0] = "Hello, World!";
-            }
-        }
-        catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             System.out.println(e);
+        }
+        try {
+            arrayIndexOutOfBoundsException();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(e);
+        }
+
+        try {
+            myNetRus();
+        } catch (MyNetRus myNetRus) {
+            myNetRus.printStackTrace();
+        }
+
+
+    }
+
+    public static void nullPointerException() throws NullPointerException {
+
+
+        if (str[0].equals("")) {
             str[0] = "Hello, World!";
         }
+    }
 
-        try {
-            System.out.println(str[1]);
+    public static void arrayIndexOutOfBoundsException() throws ArrayIndexOutOfBoundsException {
+
+        System.out.println(str[1]);
+
+    }
+
+    public static void myNetRus() throws MyNetRus {
+
+        str[0] = "Hello, World!";
+        if (!str[0].equals("a")) {
+            throw new MyNetRus(str[0]);
         }
-        catch (ArrayIndexOutOfBoundsException e)
-        {
-            System.out.println(e);
-        }
-        try {
-            throw new NumberFormatException();
-        }
-        catch (NumberFormatException e)
-        {
-            System.out.println(e);
-        }
-        System.out.println(str[0]);
+
+
     }
 }

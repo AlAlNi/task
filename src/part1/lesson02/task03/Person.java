@@ -5,24 +5,26 @@ public class Person {
     private int age;
     private Sex sex;
     String name;
-    Person(int age, Sex sex, String name)
-    {
+
+    Person(int age, Sex sex, String name) {
         this.age = age;
         this.sex = sex;
         this.name = name;
     }
-    Person(String name)
-    {
+
+    Person(String name) {
         this.name = name;
     }
 
-    int getAge() {return age;}
-    Sex getSex()
-    {
+    int getAge() {
+        return age;
+    }
+
+    Sex getSex() {
         return sex;
     }
-    String getName()
-    {
+
+    String getName() {
         return name;
     }
 
