@@ -1,11 +1,13 @@
 package part1.lesson02.task03;
 
+import java.util.Set;
+
 public class Person {
 
     int age;
-    String sex;
+    Sex sex;
     String name;
-    Person(int age, String sex, String name)
+    Person(int age, Sex sex, String name)
     {
         this.age = age;
         this.sex = sex;
@@ -17,7 +19,7 @@ public class Person {
     }
 
     public int getAge() {return age;}
-    public String getSex()
+    public Sex getSex()
     {
         return sex;
     }
