@@ -3,7 +3,7 @@ package part1.lesson02.task03;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class FillPerson {
+class FillPerson {
     static void fillPersons() {
         for (int i = 0; i < OsnMain.nA; i++) {
             Random n = new Random();
