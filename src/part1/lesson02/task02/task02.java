@@ -20,7 +20,7 @@ public class task02 {
         ArrayList<Integer> dCh = new ArrayList<>();
 
         for (int i = 0; i < m; i++) {
-            dCh.add(-100 + s.nextInt(200));
+            dCh.add(s.nextInt());
         }
         for (int i = 0; i < m; i++) {
             try {
