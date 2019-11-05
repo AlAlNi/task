@@ -1,11 +1,9 @@
 package part1.lesson02.task03;
 
-import java.util.Set;
-
 public class Person {
 
-    int age;
-    Sex sex;
+    private int age;
+    private Sex sex;
     String name;
     Person(int age, Sex sex, String name)
     {
@@ -18,12 +16,12 @@ public class Person {
         this.name = name;
     }
 
-    public int getAge() {return age;}
-    public Sex getSex()
+    int getAge() {return age;}
+    Sex getSex()
     {
         return sex;
     }
-    public String getName()
+    String getName()
     {
         return name;
     }

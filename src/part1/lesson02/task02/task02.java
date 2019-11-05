@@ -1,32 +1,34 @@
+//Задание 2. Составить программу, генерирующую N случайных чисел. Для каждого числа k вычислить квадратный корень q.
+//        Если квадрат целой части q числа равен k, то вывести это число на экран.
+//        Предусмотреть что первоначальные числа могут быть отрицательные, в этом случае генерировать исключение.
+
+
 package part1.lesson02.task02;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class task02 {
 
     public static void main(String[] args) throws MyException {
-      int N = (int) (Math.random()*100);
 
-        Double[] dCh = new Double[N];
-
-      double temp0;
-      int temp1;
+        Random s = new Random();
         Random n = new Random();
-        for (int i=0; i < N; i++)
-        {
-            dCh [i] = (double) (-100+ n.nextInt(200));
+
+        int m = s.nextInt(100);
+
+        ArrayList<Integer> dCh = new ArrayList<>();
+
+        for (int i = 0; i < m; i++) {
+            dCh.add(-100 + s.nextInt(200));
         }
-        for (int i=0; i < N; i++)
-        {
+        for (int i = 0; i < m; i++) {
             try {
-                if (dCh[i] < 0)
-                    throw new MyException(dCh[i]);
-                temp0 = Math.sqrt(dCh[i]);
-                temp1 = (int) temp0;
-                temp0 = Math.pow(temp1,2);
-                if (dCh[i]==temp0)
-                {
-                    System.out.println(String.valueOf(dCh[i]));
+                if (dCh.get(i) < 0)
+                    throw new MyException(dCh.get(i));
+
+                if (dCh.get(i) == Math.pow(Math.sqrt(dCh.get(i)), 2)) {
+                    System.out.println(dCh.get(i));
                 }
             } catch (MyException e) {
                 System.out.println(e);

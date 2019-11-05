@@ -58,7 +58,7 @@ public class Sorter1 implements Sorter{
                             sorted = false;
                         }
                     }catch (DubNameAgeException e){
-                        System.out.println(String.format("%s. Индексы элементов в массиве: %s, %s", e.getMessage(),i,i+1));
+//                        System.out.println(String.format("%s. Индексы элементов в массиве: %s, %s", e.getMessage(),i,i+1));
                         //удаление лучше делать в другом месте. но, возможно, в этом нет необходимости. просто информируем
                     }
                 }

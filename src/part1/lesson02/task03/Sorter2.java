@@ -6,9 +6,10 @@ import java.util.*;
 
 /**
  * Класс для сортировки стандартными средствами класса Arrays
+ *
  * @author AlAlNi
  */
-public class Sorter2 implements Sorter{
+public class Sorter2 implements Sorter {
     @Override
     public long sort(ArrayList<Person> peoples) {
         long start = new Date().getTime();
@@ -17,11 +18,11 @@ public class Sorter2 implements Sorter{
             try {
                 if (age1 == age2 && p1.getName().equals(p2.getName())) throw new DubNameAgeException(p1, p2);
             } catch (DubNameAgeException e) {
-                System.out.println(e.getMessage());
+//                System.out.println(e.getMessage());
             } finally {
                 return age2 - age1;
             }
         }).thenComparing(Person::getName));
-        return new Date().getTime()-start;
+        return new Date().getTime() - start;
     }
 }

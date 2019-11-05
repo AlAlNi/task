@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 public interface Sorter {
     /**
-     *
      * @param peoples Массив элементов Person для сортировки
      * @return Возвращает время, затраченное на сортировку
      */
     long sort(ArrayList<Person> peoples);
 
     /**
-     *
      * @param p1 Объект Person
      * @param p2 Объект Person
      * @return Результат совпадения имени и возраста объектов

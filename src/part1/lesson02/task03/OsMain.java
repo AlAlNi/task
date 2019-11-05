@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class OsMain {
-    static ArrayList<Person> obPerson = new ArrayList<>();
-    static int nA;
-    static ArrayList<Person> obNameMan = new ArrayList<>();
-    static ArrayList<Person> obNameWoman = new ArrayList<>();
+    private static ArrayList<Person> obPerson = new ArrayList<>();
+    private static int nA;
+    private static ArrayList<Person> obNameMan = new ArrayList<>();
+    private static ArrayList<Person> obNameWoman = new ArrayList<>();
 
     public static void main(String[] args) throws IOException, DubNameAgeException, MinChException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -74,7 +74,7 @@ public class OsMain {
         //System.out.println(Arrays.toString(peoples));
         System.out.println("Время, потраченное на сортировку встроенными методами класса Arrays: " + sortTime2/1000. + " сек.");
     }
-    public static void fillPersons() {
+    private static void fillPersons() {
         for (int i = 0; i < nA; i++) {
             Random n = new Random();
             Random m = new Random();
