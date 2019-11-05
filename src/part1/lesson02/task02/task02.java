@@ -5,23 +5,35 @@
 
 package part1.lesson02.task02;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class task02 {
 
+    private static ArrayList<Integer> dCh = new ArrayList<>();
+    private static int m;
+
     public static void main(String[] args) throws MyException {
 
+        sodMas();
+        prShet();
+
+    }
+
+    private static void sodMas() {
         Random s = new Random();
         Random n = new Random();
 
-        int m = s.nextInt(100);
+        m = s.nextInt(100);
 
-        ArrayList<Integer> dCh = new ArrayList<>();
 
         for (int i = 0; i < m; i++) {
             dCh.add(s.nextInt());
         }
+    }
+
+    private static void prShet() {
         for (int i = 0; i < m; i++) {
             try {
                 if (dCh.get(i) < 0)
