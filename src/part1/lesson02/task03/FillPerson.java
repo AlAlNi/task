@@ -1,23 +1,28 @@
 package part1.lesson02.task03;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
-class FillPerson {
-    static void fillPersons() {
-        for (int i = 0; i < OsnMain.nA; i++) {
-            Random n = new Random();
-            Random m = new Random();
-            Sex s = n.nextInt(10) % 2 == 0 ? Sex.MAN : Sex.WOMAN;
-            ArrayList<Person> names = s == Sex.MAN ? OsnMain.obNameMan : OsnMain.obNameWoman;
-            Person person = new Person(m.nextInt(101), s, names.get(m.nextInt(names.size())).name);
-            if (OsnMain.obPerson.size() <= i) {
+import static part1.lesson02.task03.KeyboardInputs.*;
+import static part1.lesson02.task03.Sex.*;
 
-                OsnMain.obPerson.add(person);
+class FillPerson {
+    static final ArrayList<Person> personArrayList = new ArrayList<>();
+    static final ArrayList<Person> personArrayListCopy = new ArrayList<>();
+
+    static void fillPersons() {
+        for (int i = 0; i < customNumberElements; i++) {
+            Random random = new Random();
+            Sex s = ((random.nextInt(10) % 2) == 0) ? MAN : WOMAN;
+            ArrayList<Person> names = (s == MAN) ? nameManArrayList : nameWomanArrayList;
+            Person person = new Person(random.nextInt(101), s, names.get(random.nextInt(names.size())).getName());
+            if (personArrayList.size() <= i) {
+                personArrayList.add(person);
             } else {
-                OsnMain.obPerson.set(i, person);
+                personArrayList.set(i, person);
             }
-//        System.out.println(i);
         }
+        Collections.copy(personArrayList, personArrayListCopy);
     }
 }

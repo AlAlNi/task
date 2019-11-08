@@ -4,7 +4,7 @@ public class Person {
 
     private int age;
     private Sex sex;
-    String name;
+    private String name;
 
     Person(int age, Sex sex, String name) {
         this.age = age;
@@ -27,5 +27,4 @@ public class Person {
     String getName() {
         return name;
     }
-
 }

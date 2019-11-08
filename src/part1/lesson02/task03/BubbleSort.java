@@ -1,19 +1,17 @@
 package part1.lesson02.task03;
 
-import part1.lesson02.task03.Exception.DubNameAgeException;
+import part1.lesson02.task03.exception.DubNameAgeException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
  * Класс, реализующий интерфейс Sorter. Сортирует переданный массив методом пузырька
  */
-public class Sorter1 implements Sorter {
+public class BubbleSort implements Sorter {
     @Override
     public long sort(ArrayList<Person> peoples) {
         long start = new Date().getTime();
-        //System.out.println(Arrays.toString(peoples));
         boolean sorted = false; //сортируем пузырьком
         Person temp;
         //сортируем мужчин сначала
@@ -28,7 +26,6 @@ public class Sorter1 implements Sorter {
                 }
             }
         }
-
         sorted = false;
         while (!sorted) {
             sorted = true;
@@ -41,7 +38,6 @@ public class Sorter1 implements Sorter {
                 }
             }
         }
-
         sorted = false;
         while (!sorted) {
             sorted = true;
@@ -58,16 +54,11 @@ public class Sorter1 implements Sorter {
                             sorted = false;
                         }
                     } catch (DubNameAgeException e) {
-//                        System.out.println(String.format("%s. Индексы элементов в массиве: %s, %s", e.getMessage(),i,i+1));
-                        //удаление лучше делать в другом месте. но, возможно, в этом нет необходимости. просто информируем
+                        e.printStackTrace();
                     }
                 }
             }
         }
-
-        //System.out.println(Arrays.toString(peoples));
-
         return new Date().getTime() - start;
     }
-
 }

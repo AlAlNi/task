@@ -1,6 +1,6 @@
 package part1.lesson02.task03;
 
-import part1.lesson02.task03.Exception.DubNameAgeException;
+import part1.lesson02.task03.exception.DubNameAgeException;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @author AlAlNi
  */
-public class Sorter2 implements Sorter {
+public class ArraysSort implements Sorter {
     @Override
     public long sort(ArrayList<Person> peoples) {
         long start = new Date().getTime();
@@ -18,10 +18,9 @@ public class Sorter2 implements Sorter {
             try {
                 if (age1 == age2 && p1.getName().equals(p2.getName())) throw new DubNameAgeException(p1, p2);
             } catch (DubNameAgeException e) {
-//                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
             return age2 - age1;
-
         }).thenComparing(Person::getName));
         return new Date().getTime() - start;
     }
