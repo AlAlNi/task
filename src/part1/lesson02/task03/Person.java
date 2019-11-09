@@ -12,9 +12,6 @@ public class Person {
         this.name = name;
     }
 
-    Person(String name) {
-        this.name = name;
-    }
 
     int getAge() {
         return age;

@@ -6,11 +6,13 @@ import static part1.lesson02.task03.FillPerson.*;
 import static part1.lesson02.task03.KeyboardInputs.*;
 
 class SortTime {
-    static void sortTime() throws IOException {
-        bufferMan();
-        bufferWoman();
-        inputSizeArray();
-        fillPersons();
+    public void sortTime() throws IOException {
+        KeyboardInputs keyboardInputs = new KeyboardInputs();
+        keyboardInputs.bufferMan();
+        keyboardInputs.bufferWoman();
+        keyboardInputs.inputSizeArray();
+        FillPerson fillPerson = new FillPerson();
+        fillPerson.fillPersons();
         Sorter sort1 = new BubbleSort();
         long sortTime1 = sort1.sort(personArrayList);
         Sorter sort2 = new ArraysSort();

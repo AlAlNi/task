@@ -22,6 +22,7 @@ import static part1.lesson02.task03.SortTime.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        sortTime();
+        SortTime sortTime =new SortTime();
+        sortTime.sortTime();
     }
 }
