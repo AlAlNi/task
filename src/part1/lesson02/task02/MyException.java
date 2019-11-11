@@ -1,14 +1,9 @@
 package part1.lesson02.task02;
 
 class MyException extends Exception {
-    private double detail;
 
-    MyException(double a) {
-        detail = a;
-    }
-
-    public String toString() {
-        return "Отрицательное число [" + detail + "]";
+    public MyException(int p1) {
+        super(String.format("Отрицательное число %s", p1));
     }
 }
 

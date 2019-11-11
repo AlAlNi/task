@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 
 class KeyboardInputs {
-     int customNumberElements;
+    int customNumberElements;
     ArrayList<String> nameWomanArrayList = new ArrayList<>();
     ArrayList<String> nameManArrayList = new ArrayList<>();
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -41,5 +41,6 @@ class KeyboardInputs {
                 e.printStackTrace();
             }
         } while (true);
+        reader.close();
     }
 }
