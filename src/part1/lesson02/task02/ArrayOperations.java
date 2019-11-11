@@ -1,7 +1,6 @@
 package part1.lesson02.task02;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Random;
 
 class ArrayOperations {
@@ -9,13 +8,13 @@ class ArrayOperations {
     private static final Random random = new Random();
     private static final int randomSizeArrayList = random.nextInt(100);
 
-    static void randomNumber() {
+     void randomNumber() {
         for (int i = 0; i < randomSizeArrayList; i++) {
             arrayList.add(random.nextInt());
         }
     }
 
-    static void basicCalculation() {
+     void basicCalculation() {
         for (int i = 0; i < randomSizeArrayList; i++) {
             try {
                 if (arrayList.get(i) < 0)

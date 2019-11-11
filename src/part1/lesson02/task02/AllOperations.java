@@ -8,11 +8,11 @@
 
 package part1.lesson02.task02;
 
-import static part1.lesson02.task02.ArrayOperations.*;
 
 public class AllOperations {
     public static void main(String[] args) {
-        randomNumber();
-        basicCalculation();
+        ArrayOperations arrayOperations = new ArrayOperations();
+        arrayOperations.randomNumber();
+        arrayOperations.basicCalculation();
     }
 }
