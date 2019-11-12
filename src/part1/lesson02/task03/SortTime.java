@@ -1,16 +1,10 @@
 package part1.lesson02.task03;
 
-import java.io.IOException;
-
-import static part1.lesson02.task03.FillPerson.*;
-import static part1.lesson02.task03.KeyboardInputs.*;
 
 class SortTime {
-     void sortTime() throws IOException {
+     void sortTime() throws Exception {
         KeyboardInputs keyboardInputs = new KeyboardInputs();
-        keyboardInputs.bufferMan();
-        keyboardInputs.bufferWoman();
-        keyboardInputs.inputSizeArray();
+        keyboardInputs.bufferInput();
         FillPerson fillPerson = new FillPerson();
         fillPerson.fillPersons(keyboardInputs);
         Sorter sort1 = new BubbleSort();

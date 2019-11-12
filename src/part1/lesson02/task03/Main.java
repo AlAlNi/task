@@ -16,12 +16,9 @@
  */
 package part1.lesson02.task03;
 
-import java.io.IOException;
-
-import static part1.lesson02.task03.SortTime.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         SortTime sortTime =new SortTime();
         sortTime.sortTime();
     }
