@@ -27,7 +27,7 @@ class KeyboardInputs {
                 nameWomanArrayList.add(reader.readLine());
             }
             do {
-                final int minNumberElements = 1000;
+                final int minNumberElements = 10000;
                 try {
                     System.out.println("Введите длину генирированного масива(число от " + minNumberElements + " и более):");
                     customNumberElements = Integer.parseInt(reader.readLine());
