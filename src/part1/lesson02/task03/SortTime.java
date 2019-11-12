@@ -2,7 +2,7 @@ package part1.lesson02.task03;
 
 
 class SortTime {
-     void sortTime() throws Exception {
+    void sortTime() throws Exception {
         KeyboardInputs keyboardInputs = new KeyboardInputs();
         keyboardInputs.bufferInput();
         FillPerson fillPerson = new FillPerson();
