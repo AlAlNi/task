@@ -1,21 +1,21 @@
 package part1.lesson02.task01;
 
-import static part1.lesson02.task01.RunHelloWorld.*;
 
 class TryHelloWorld {
     static void tryHelloWorld() {
+        RunHelloWorld runHelloWorld = new RunHelloWorld();
         try {
-            nullPointerException();
+            runHelloWorld.nullPointerException();
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
         try {
-            arrayIndexOutOfBoundsException();
+            runHelloWorld.arrayIndexOutOfBoundsException();
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
         }
         try {
-            noRussianLettersA();
+            runHelloWorld.noRussianLettersA();
         } catch (NoRussianLettersException noRussianLettersException) {
             noRussianLettersException.printStackTrace();
         }

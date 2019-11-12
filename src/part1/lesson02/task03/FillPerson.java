@@ -7,10 +7,10 @@ import java.util.Random;
 import static part1.lesson02.task03.Sex.*;
 
 class FillPerson {
-     ArrayList<Person> personArrayList = new ArrayList<>();
-     ArrayList<Person> personArrayListCopy = new ArrayList<>();
+    ArrayList<Person> personArrayList = new ArrayList<>();
+    ArrayList<Person> personArrayListCopy = new ArrayList<>();
 
-     void fillPersons(KeyboardInputs keyboardInputs) {
+    void fillPersons(KeyboardInputs keyboardInputs) {
         for (int i = 0; i < keyboardInputs.customNumberElements; i++) {
             Random random = new Random();
             Sex s = ((random.nextInt(10) % 2) == 0) ? MAN : WOMAN;

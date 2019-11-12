@@ -8,13 +8,13 @@ class ArrayOperations {
     private static final Random random = new Random();
     private static final int randomSizeArrayList = random.nextInt(100);
 
-     void randomNumber() {
+    void randomNumber() {
         for (int i = 0; i < randomSizeArrayList; i++) {
             arrayList.add(random.nextInt());
         }
     }
 
-     void basicCalculation() {
+    void basicCalculation() {
         for (int i = 0; i < randomSizeArrayList; i++) {
             try {
                 if (arrayList.get(i) < 0)
