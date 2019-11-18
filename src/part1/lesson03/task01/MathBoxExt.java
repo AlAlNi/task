@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * Объект, хранящий множество чисел Number. По умолчанию все числа приводятся к формату BigDecimal, как предположительный наивысший возможный вариант числа, содержащегося в массиве Number
  *
- * @author VDV
+ * @author AlAlNi
  */
 public class MathBoxExt extends ObjectBoxExt {
 
