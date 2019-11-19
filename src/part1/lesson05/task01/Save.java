@@ -8,6 +8,7 @@ class Save {
     private ArrayList<AnimalInfo> animalInfoArrayList = new ArrayList<>();
     private ArrayList<AnimalInfo> arrayListSearchFullMatch = new ArrayList<>();
     private ArrayList<AnimalInfo> arrayListSearchByLetter = new ArrayList<>();
+    private ArrayList<AnimalInfo> arrayListSearchId = new ArrayList<>();
     int sizeArrayList;
 
     void unloadArrayList() throws IOException {
@@ -27,7 +28,7 @@ class Save {
 
     void addArrayList(AnimalInfo a1) {
         getAnimalInfoArrayList().add(a1);
-        System.out.println(ItemsMenu.TEXT_ANIMAL_ADD);
+        System.out.println(ItemsMenu.TEXT_DATA_ADD);
         System.out.println(animalInfoArrayList.get(animalInfoArrayList.size() - 1));
     }
 
@@ -62,7 +63,9 @@ class Save {
     ArrayList<AnimalInfo> getArrayListSearchByLetter() {
         return arrayListSearchByLetter;
     }
-
+    ArrayList<AnimalInfo> getArrayListSearchId() {
+        return arrayListSearchId;
+    }
 
     public void setAnimalInfoArrayList(ArrayList<AnimalInfo> animalInfoArrayList) {
         this.animalInfoArrayList = animalInfoArrayList;

@@ -1,9 +1,8 @@
 package part1.lesson05.task01;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class searchByLetterNickName implements SearchNickName {
+public class SearchStringByLetter implements SearchString {
 
 
     @Override
