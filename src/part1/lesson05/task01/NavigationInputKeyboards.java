@@ -71,13 +71,30 @@ public class NavigationInputKeyboards implements Serializable {
                 }
                 if ("002".equals(tempItemMainMenu)) {
                     out.println(ItemsMenu.TEXT_INPUT_NICK_NAME_ANIMAL);
+                    if (save.getArrayListSearchFullMatch().size() > 0) {
+                        save.getArrayListSearchFullMatch().clear();
+                    }
+                    if (save.getArrayListSearchByLetter().size() > 0) {
+                        save.getArrayListSearchByLetter().clear();
+                    }
                     String tempSearchNickName = bufferedReader.readLine();
                     SearchNickName searchNickName1 = new searchFullMatchNickName();
-                    ArrayList<AnimalInfo> arrayList;
-                    arrayList = searchNickName1.arrayListSearch(save.getAnimalInfoArrayList(),
-                            save.getAnimalInfoArrayListSearch(), tempSearchNickName);
-                    for (AnimalInfo info : arrayList) {
-                        out.println(info);
+                    ArrayList<AnimalInfo> arrayList1;
+                    arrayList1 = searchNickName1.arrayListSearch(save.getAnimalInfoArrayList(),
+                            save.getArrayListSearchFullMatch(), tempSearchNickName);
+                    SearchNickName searchNickName2 = new searchByLetterNickName();
+                    ArrayList<AnimalInfo> arrayList2;
+                    arrayList2 = searchNickName2.arrayListSearch(save.getAnimalInfoArrayList(),
+                            save.getArrayListSearchByLetter(), tempSearchNickName);
+                    if (arrayList1.size() > 0 && arrayList1.size() <= arrayList2.size()) {
+                        for (AnimalInfo info : arrayList1) {
+                            out.println(info);
+                        }
+                    }
+                    if (arrayList2.size() > 0 && arrayList1.size() == 0) {
+                        for (AnimalInfo info : arrayList2) {
+                            out.println(info);
+                        }
                     }
                     mainMenu.mainMenu(ItemsMenu.ITEM_MENU_NEW_ANIMAL,
                             ItemsMenu.ITEM_MENU_SEARCH,

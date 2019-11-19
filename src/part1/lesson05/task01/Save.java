@@ -6,7 +6,8 @@ import java.util.ArrayList;
 class Save {
     private static final long serialVersionUID = 9013909351230891459L;
     private ArrayList<AnimalInfo> animalInfoArrayList = new ArrayList<>();
-    private ArrayList<AnimalInfo> animalInfoArrayListSearch = new ArrayList<>();
+    private ArrayList<AnimalInfo> arrayListSearchFullMatch = new ArrayList<>();
+    private ArrayList<AnimalInfo> arrayListSearchByLetter = new ArrayList<>();
     int sizeArrayList;
 
     void unloadArrayList() throws IOException {
@@ -54,9 +55,14 @@ class Save {
         return animalInfoArrayList;
     }
 
-    ArrayList<AnimalInfo> getAnimalInfoArrayListSearch() {
-        return animalInfoArrayListSearch;
+    ArrayList<AnimalInfo> getArrayListSearchFullMatch() {
+        return arrayListSearchFullMatch;
     }
+
+    ArrayList<AnimalInfo> getArrayListSearchByLetter() {
+        return arrayListSearchByLetter;
+    }
+
 
     public void setAnimalInfoArrayList(ArrayList<AnimalInfo> animalInfoArrayList) {
         this.animalInfoArrayList = animalInfoArrayList;
