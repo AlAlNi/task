@@ -3,7 +3,7 @@ package part1.lesson05.task01;
 import java.io.*;
 import java.util.ArrayList;
 
-class Save {
+class Load {
     private static final long serialVersionUID = 9013909351230891459L;
     private ArrayList<AnimalInfo> animalInfoArrayList = new ArrayList<>();
     private ArrayList<AnimalInfo> arrayListSearchFullMatch = new ArrayList<>();

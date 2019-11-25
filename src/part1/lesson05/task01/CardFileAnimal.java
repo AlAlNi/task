@@ -9,18 +9,20 @@
  */
 package part1.lesson05.task01;
 
-import part1.lesson05.task01.menu.MainMenu;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.stream.IntStream;
 
 public class CardFileAnimal {
-    public static void main(String[] args) {
-        NavigationInputKeyboards navigationInputKeyboards = new NavigationInputKeyboards();
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.mainMenu(ItemsMenu.ITEM_MENU_NEW_ANIMAL,
-                ItemsMenu.ITEM_MENU_SEARCH,
-                ItemsMenu.ITEM_MENU_CHANGE_DATA,
-                ItemsMenu.ITEM_MENU_ANIMAL_LIST,
-                ItemsMenu.ITEM_MENU_EXIT,
-                ItemsMenu.PUNKT_MENU);
-        navigationInputKeyboards.inputKeyboards();
+    public static void main(String[] args) throws IOException {
+        IntStream.range(0, 7).mapToObj(ItemsMenu.ITEMS_MENU_MAP_STRING::get).forEach(System.out::print);
+        System.out.println("");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        SearchTextInput searchStringInputMenu1 = new SearchTextInput();
+        String inputText = searchStringInputMenu1.inputText(bufferedReader.readLine());
+        bufferedReader.close();
+        System.out.println(inputText);
     }
 }

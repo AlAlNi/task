@@ -2,14 +2,14 @@ package part1.lesson05.task01;
 
 import java.util.ArrayList;
 
-public class SearchStringByLetter implements SearchString {
+public class SearchStringAnimalByLetter implements SearchStringAnimal {
 
 
     @Override
     public ArrayList<AnimalInfo> arrayListSearch(ArrayList<AnimalInfo> arrayList,
-                                                 ArrayList<AnimalInfo> arrayListCopy, String nickNameSearch) {
+                                                 ArrayList<AnimalInfo> arrayListCopy, String stringSearch) {
         for (AnimalInfo info : arrayList) {
-            if (nickNameSearch.equalsIgnoreCase(info.getNickNameAnimal().substring(0, (nickNameSearch.length())))) {
+            if (stringSearch.equalsIgnoreCase(info.getNickNameAnimal().substring(0, (stringSearch.length())))) {
                 arrayListCopy.add(info);
             }
         }
