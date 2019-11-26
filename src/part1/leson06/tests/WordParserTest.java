@@ -8,7 +8,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 public class WordParserTest {
-
     WordParser wordParser;
 
     @Before

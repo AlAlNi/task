@@ -1,7 +1,6 @@
 package part1.lesson05.task01;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.UUID;
 
 public class EditId implements EditById {

@@ -3,7 +3,7 @@ package part1.lesson05.task01;
 import java.io.Serializable;
 
 public class PersonInfo extends AnimalInfo implements Serializable {
-
+    private static final long serialVersionUID = 9013909351230891459l;
     private AnimalInfo animalInfo;
     private int age;
     private Sex sex;
@@ -50,7 +50,4 @@ public class PersonInfo extends AnimalInfo implements Serializable {
         return animalInfo;
     }
 
-    void setAnimalInfo(AnimalInfo animalInfo) {
-        this.animalInfo = animalInfo;
-    }
 }

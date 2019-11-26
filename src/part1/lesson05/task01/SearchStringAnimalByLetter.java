@@ -15,4 +15,5 @@ public class SearchStringAnimalByLetter implements SearchStringAnimal {
         }
         return arrayListCopy;
     }
+
 }

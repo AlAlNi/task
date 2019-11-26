@@ -9,7 +9,6 @@ import part1.leson06.WrongFileFormatException;
 import java.io.IOException;
 import java.util.List;
 
-
 public class TextGeneratorTest {
     private List<String> words;
 
