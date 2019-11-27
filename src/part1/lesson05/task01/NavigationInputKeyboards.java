@@ -16,18 +16,18 @@
 //import static part1.lesson05.task01.Sex.WOMAN;
 //
 //public class NavigationInputKeyboards implements Serializable {
-//    private Load load = new Load();
+//    private Loading loading = new Loading();
 //    private static final long serialVersionUID = 9013909351230891459L;
 //
 //    void inputKeyboards(String tempItemMainMenu) {
 //        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in))) {
 //            boolean exitMainMenu = false;
 //            do {
-//                if (load.sizeArrayList == 0) {
-//                    load.unloadArrayList();
+//                if (loading.sizeArrayList == 0) {
+//                    loading.unloadArrayList();
 //                }
 //                if ("001".equals(tempItemMainMenu)) {
-//                    out.println(ItemsMenu.TEXT_SIZE_CATALOG + load.getAnimalInfoArrayList().size());
+//                    out.println(ItemsMenu.TEXT_SIZE_CATALOG + loading.getAnimalInfoArrayList().size());
 //                    for (boolean exitInMainMenu = false; !exitInMainMenu; ) {
 //                        AnimalInfo animalInfo = new AnimalInfo();
 //                        animalInfo.setIdAnimal(UUID.randomUUID());
@@ -47,19 +47,19 @@
 //                        if ("006".equals(tempSexPerson)) {
 //                            personInfo.setSexPerson(MAN);
 //                            animalInfo.setPersonInfo(personInfo);
-//                            load.addArrayList(animalInfo);
+//                            loading.addArrayList(animalInfo);
 //                        }
 //                        if ("007".equals(tempSexPerson)) {
 //                            personInfo.setSexPerson(WOMAN);
 //                            animalInfo.setPersonInfo(personInfo);
-//                            load.addArrayList(animalInfo);
+//                            loading.addArrayList(animalInfo);
 //                        }
 //                        out.print(ItemsMenu.ITEM_HOME_MENU);
 //                        out.println(ItemsMenu.ITEM_MENU_NEW_ANIMAL);
 //                        String tempItemHomeMenu = bufferedReader.readLine();
 //                        if ("005".equals(tempItemHomeMenu)) {
-//                            load.saveArrayList();
-//                            load.saveSizeArrayList();
+//                            loading.saveArrayList();
+//                            loading.saveSizeArrayList();
 //                            exitInMainMenu = true;
 //                            IntStream.range(0, 5).mapToObj(ItemsMenu.ITEMS_MENU_MAP_STRING::get).forEach(System.out::print);
 //                        }
@@ -67,21 +67,21 @@
 //                }
 //                if ("002".equals(tempItemMainMenu)) {
 //                    out.println(ItemsMenu.TEXT_NICK_NAME_ANIMAL);
-//                    if (load.getArrayListSearchFullMatch().size() > 0) {
-//                        load.getArrayListSearchFullMatch().clear();
+//                    if (loading.getArrayListSearchFullMatch().size() > 0) {
+//                        loading.getArrayListSearchFullMatch().clear();
 //                    }
-//                    if (load.getArrayListSearchByLetter().size() > 0) {
-//                        load.getArrayListSearchByLetter().clear();
+//                    if (loading.getArrayListSearchByLetter().size() > 0) {
+//                        loading.getArrayListSearchByLetter().clear();
 //                    }
 //                    String tempSearchNickName = bufferedReader.readLine();
 //                    SearchStringAnimal searchStringAnimal1 = new SearchStringAnimalFullMatch();
 //                    ArrayList<AnimalInfo> arrayList1;
-//                    arrayList1 = searchStringAnimal1.arrayListSearch(load.getAnimalInfoArrayList(),
-//                            load.getArrayListSearchFullMatch(), tempSearchNickName);
+//                    arrayList1 = searchStringAnimal1.arrayListSearch(loading.getAnimalInfoArrayList(),
+//                            loading.getArrayListSearchFullMatch(), tempSearchNickName);
 //                    SearchStringAnimal searchStringAnimal2 = new SearchStringAnimalByLetter();
 //                    ArrayList<AnimalInfo> arrayList2;
-//                    arrayList2 = searchStringAnimal2.arrayListSearch(load.getAnimalInfoArrayList(),
-//                            load.getArrayListSearchByLetter(), tempSearchNickName);
+//                    arrayList2 = searchStringAnimal2.arrayListSearch(loading.getAnimalInfoArrayList(),
+//                            loading.getArrayListSearchByLetter(), tempSearchNickName);
 //                    if (arrayList1.size() > 0 && arrayList1.size() <= arrayList2.size()) {
 //                        for (AnimalInfo info : arrayList1) {
 //                            out.println(info);
@@ -95,15 +95,15 @@
 //                    IntStream.range(0, 5).mapToObj(ItemsMenu.ITEMS_MENU_MAP_STRING::get).forEach(System.out::print);
 //                }
 //                if ("003".equals(tempItemMainMenu)) {
-//                    if (load.getArrayListSearchId().size() > 0) {
-//                        load.getArrayListSearchId().clear();
+//                    if (loading.getArrayListSearchId().size() > 0) {
+//                        loading.getArrayListSearchId().clear();
 //                    }
 //                    out.println(ItemsMenu.TEXT_ID_CATALOG);
 //                    UUID tempSearchId = UUID.fromString(bufferedReader.readLine());
 //                    EditById editById1 = new SearchId();
 //                    ArrayList<AnimalInfo> arrayList3;
-//                    arrayList3 = editById1.arrayListEdition(load.getAnimalInfoArrayList(),
-//                            load.getArrayListSearchId(), tempSearchId);
+//                    arrayList3 = editById1.arrayListEdition(loading.getAnimalInfoArrayList(),
+//                            loading.getArrayListSearchId(), tempSearchId);
 //                    if (arrayList3.size() == 1) {
 //                        out.println(arrayList3);
 //                        out.println(ItemsMenu.TEXT_NEW_DATA + ItemsMenu.TEXT_NAME_PERSON);
@@ -138,11 +138,11 @@
 //                                EditById editById2 = new EditId() {
 //                                };
 //                                ArrayList<AnimalInfo> arrayList4;
-//                                arrayList4 = editById2.arrayListEdition(load.getAnimalInfoArrayList(),
+//                                arrayList4 = editById2.arrayListEdition(loading.getAnimalInfoArrayList(),
 //                                        arrayList3, tempSearchId);
-//                                Collections.copy(arrayList4, load.getAnimalInfoArrayList());
-//                                load.saveArrayList();
-//                                load.saveSizeArrayList();
+//                                Collections.copy(arrayList4, loading.getAnimalInfoArrayList());
+//                                loading.saveArrayList();
+//                                loading.saveSizeArrayList();
 //                                isExit = true;
 //                                out.println(ItemsMenu.TEXT_DATA_ADD);
 //                                IntStream.range(0, 5).mapToObj(ItemsMenu.ITEMS_MENU_MAP_STRING::get).forEach(System.out::print);
@@ -166,26 +166,26 @@
 //                        String ItemMenu = bufferedReader.readLine();
 //                        sortCatalogAnimal.sortCatalogAnimal(ItemMenu);
 ////                        if ("008".equals(tempItemMenu)) {
-////                            load.getAnimalInfoArrayList().sort(comparing(a -> a.getNickNameAnimal()));
-////                            for (AnimalInfo info : load.getAnimalInfoArrayList()) {
+////                            loading.getAnimalInfoArrayList().sort(comparing(a -> a.getNickNameAnimal()));
+////                            for (AnimalInfo info : loading.getAnimalInfoArrayList()) {
 ////                                out.println(info);
 ////                            }
 ////                        }
 ////                        if ("009".equals(ItemMenu)) {
-////                            load.getAnimalInfoArrayList().sort(comparing(a->a.getPersonInfo().getNamePerson()));
-////                            for (AnimalInfo info : load.getAnimalInfoArrayList()) {
+////                            loading.getAnimalInfoArrayList().sort(comparing(a->a.getPersonInfo().getNamePerson()));
+////                            for (AnimalInfo info : loading.getAnimalInfoArrayList()) {
 ////                                out.println(info);
 ////                            }
 ////                        }
 ////                        if ("010".equals(ItemMenu)) {
-////                            load.getAnimalInfoArrayList().sort(comparing(a -> a.getAnimalWeight()));
-////                            for (AnimalInfo info : load.getAnimalInfoArrayList()) {
+////                            loading.getAnimalInfoArrayList().sort(comparing(a -> a.getAnimalWeight()));
+////                            for (AnimalInfo info : loading.getAnimalInfoArrayList()) {
 ////                                out.println(info);
 ////                            }
 ////                        }
 //                        if ("005".equals(ItemMenu)) {
-//                            load.saveArrayList();
-//                            load.saveSizeArrayList();
+//                            loading.saveArrayList();
+//                            loading.saveSizeArrayList();
 //                            exitMenu = true;
 //                            IntStream.range(0, 5).mapToObj(ItemsMenu.ITEMS_MENU_MAP_STRING::get).forEach(System.out::print);
 //                        }

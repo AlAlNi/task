@@ -2,10 +2,7 @@ package part1.lesson05.task01;
 
 import java.util.ArrayList;
 
-public class SearchStringAnimalByLetter implements SearchStringAnimal {
-
-
-    @Override
+public class SearchStringAnimalByLetter {
     public ArrayList<AnimalInfo> arrayListSearch(ArrayList<AnimalInfo> arrayList,
                                                  ArrayList<AnimalInfo> arrayListCopy, String stringSearch) {
         for (AnimalInfo info : arrayList) {

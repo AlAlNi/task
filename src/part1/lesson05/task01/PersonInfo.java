@@ -1,9 +1,6 @@
 package part1.lesson05.task01;
 
-import java.io.Serializable;
-
-public class PersonInfo extends AnimalInfo implements Serializable {
-    private static final long serialVersionUID = 9013909351230891459l;
+public class PersonInfo extends AnimalInfo {
     private AnimalInfo animalInfo;
     private int age;
     private Sex sex;
@@ -21,14 +18,18 @@ public class PersonInfo extends AnimalInfo implements Serializable {
 
     @Override
     public String toString() {
-        return name + " " + sex + " " + age;
+        return name
+                + " "
+                + sex
+                + " "
+                + age;
     }
 
     int getAgePerson() {
         return age;
     }
 
-     void setAgePerson(int age) {
+    void setAgePerson(int age) {
         this.age = age;
     }
 
@@ -36,18 +37,15 @@ public class PersonInfo extends AnimalInfo implements Serializable {
         return sex;
     }
 
-     void setSexPerson(Sex sex) {
+    void setSexPerson(Sex sex) {
         this.sex = sex;
     }
-
 
     String getNamePerson() {
         return name;
     }
-     void setNamePerson(String name) {this.name = name;}
 
-    public AnimalInfo getAnimalInfo() {
-        return animalInfo;
+    void setNamePerson(String name) {
+        this.name = name;
     }
-
 }

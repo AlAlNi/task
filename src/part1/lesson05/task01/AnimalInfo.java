@@ -1,13 +1,11 @@
 package part1.lesson05.task01;
 
 
-import java.io.Serializable;
 import java.util.UUID;
 
 
-public class AnimalInfo implements Serializable {
-    private static final long serialVersionUID = 9013909351230891459l;
-    private UUID idAdmin;
+public class AnimalInfo {
+    private String idAdmin;
     private String nickNameAnimal;
     private int animalWeight;
     PersonInfo personInfo;
@@ -15,7 +13,7 @@ public class AnimalInfo implements Serializable {
     public AnimalInfo() {
     }
 
-    public AnimalInfo(String nickNameAnimal, int animalWeight, UUID idAnimal, PersonInfo personInfo) {
+    public AnimalInfo(String nickNameAnimal, int animalWeight, String idAnimal, PersonInfo personInfo) {
         this.nickNameAnimal = nickNameAnimal;
         this.animalWeight = animalWeight;
         this.personInfo = personInfo;
@@ -57,7 +55,7 @@ public class AnimalInfo implements Serializable {
         return nickNameAnimal;
     }
 
-    UUID getIdAdmin() {
+    String getIdAdmin() {
         return idAdmin;
     }
 
@@ -65,7 +63,7 @@ public class AnimalInfo implements Serializable {
         this.personInfo = personInfo;
     }
 
-    void setIdAnimal(UUID idAnimal) {
+    void setIdAnimal(String idAnimal) {
         this.idAdmin = idAnimal;
     }
 

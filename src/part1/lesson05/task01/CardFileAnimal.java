@@ -20,7 +20,7 @@ public class CardFileAnimal {
         IntStream.range(0, 7).mapToObj(ItemsMenu.ITEMS_MENU_MAP_STRING::get).forEach(System.out::print);
         System.out.println("");
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        SearchTextInput searchStringInputMenu1 = new SearchTextInput();
+        SearchItemsMenu searchStringInputMenu1 = new SearchItemsMenu();
         String inputText = searchStringInputMenu1.inputText(bufferedReader.readLine());
         bufferedReader.close();
         System.out.println(inputText);
