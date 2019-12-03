@@ -1,7 +1,9 @@
-package part1.lesson05.task01;
+package part1.lesson05.task01.entity;
 
-public class PersonInfo extends AnimalInfo {
-    private AnimalInfo animalInfo;
+import java.io.Serializable;
+
+public class PersonInfo extends AnimalInfo implements Serializable {
+
     private int age;
     private Sex sex;
     private String name;
@@ -25,27 +27,27 @@ public class PersonInfo extends AnimalInfo {
                 + age;
     }
 
-    int getAgePerson() {
+    public  int getAgePerson() {
         return age;
     }
 
-    void setAgePerson(int age) {
+    public   void setAgePerson(int age) {
         this.age = age;
     }
 
-    Sex getSexPerson() {
+    public   Sex getSexPerson() {
         return sex;
     }
 
-    void setSexPerson(Sex sex) {
+    public  void setSexPerson(Sex sex) {
         this.sex = sex;
     }
 
-    String getNamePerson() {
+    public   String getNamePerson() {
         return name;
     }
 
-    void setNamePerson(String name) {
+    public  void setNamePerson(String name) {
         this.name = name;
     }
 }

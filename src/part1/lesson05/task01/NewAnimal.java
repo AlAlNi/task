@@ -1,9 +1,16 @@
 package part1.lesson05.task01;
 
+import part1.lesson05.task01.entity.AnimalInfo;
+import part1.lesson05.task01.entity.PersonInfo;
+import part1.lesson05.task01.entity.Sex;
+import part1.lesson05.task01.utilities.ItemsMenuUtilities;
+import part1.lesson05.task01.utilities.TextInputMenuUtilities;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.stream.IntStream;
 
 public class NewAnimal {
@@ -12,11 +19,12 @@ public class NewAnimal {
     int numberOfMistakes;
     AnimalInfo animalInfo1 = new AnimalInfo();
     PersonInfo personInfo1 = new PersonInfo();
+    InfoArrayAnimalInfo infoArrayAnimalInfo = new InfoArrayAnimalInfo();
 
-    public void NewAnimal() throws IOException {
-        IntStream.range(0, TextInputMenu.TEXT_QUESTIONS_MENU_INPUT.size())
-                .filter(i -> "001".equals(TextInputMenu.TEXT_QUESTIONS_MENU_INPUT.get(i).getItemTextInput()))
-                .forEachOrdered(i -> arrayAnimal.add(TextInputMenu.TEXT_QUESTIONS_MENU_INPUT.get(i).getTextInput()));
+    public void addNewAnimal() throws IOException {
+        IntStream.range(0, TextInputMenuUtilities.TEXT_QUESTIONS_MENU_INPUT.size())
+                .filter(i -> "001".equals(TextInputMenuUtilities.TEXT_QUESTIONS_MENU_INPUT.get(i).getItemTextInput()))
+                .forEachOrdered(i -> arrayAnimal.add(TextInputMenuUtilities.TEXT_QUESTIONS_MENU_INPUT.get(i).getTextInput()));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         do {
             numberOfMistakes = 0;
@@ -30,14 +38,14 @@ public class NewAnimal {
                 personInfo1.setAgePerson(Integer.parseInt(arrayAnimal.get(3)));
             } catch (NumberFormatException e) {
                 System.err.println("Не коректный ввод возроста: " + arrayAnimal.get(3));
-                arrayAnimal.set(3, ItemsMenu.TEXT_AGE_PERSON);
+                arrayAnimal.set(3, ItemsMenuUtilities.TEXT_AGE_PERSON);
                 numberOfMistakes++;
             }
             try {
                 animalInfo1.setAnimalWeight(Integer.parseInt(arrayAnimal.get(1)));
             } catch (NumberFormatException e) {
                 System.err.println("Не коректный ввод веса: " + arrayAnimal.get(1));
-                arrayAnimal.set(1, ItemsMenu.TEXT_ANIMAL_WEIGHT);
+                arrayAnimal.set(1, ItemsMenuUtilities.TEXT_ANIMAL_WEIGHT);
                 numberOfMistakes++;
             }
             if ("man".equalsIgnoreCase(arrayAnimal.get(4)) || "мужчина".equalsIgnoreCase(arrayAnimal.get(4))) {
@@ -53,26 +61,49 @@ public class NewAnimal {
                 System.err.println("Неверно указан пол хозяина животного(WOMAN,MAN): " + arrayAnimal.get(4));
                 numberOfMistakes++;
             }
-            InfoArrayAnimalInfo infoArrayAnimalInfo = new InfoArrayAnimalInfo();
             infoArrayAnimalInfo.getSizeArrayAnimalInfo();
+            infoArrayAnimalInfo.getArrayAnimalInfo();
+            animalInfo1.setPersonInfo(personInfo1);
+//            AnimalInfo animalInfoTestReplay = new AnimalInfo();
+//            PersonInfo personInfoTestReplay = new PersonInfo();
+//            if (infoArrayAnimalInfo.sizeArrayAnimalInfo > 0) {
+//                IntStream.range(0, infoArrayAnimalInfo.animalInfoArray.size()).forEach(i -> {
+//                    animalInfoTestReplay.setNickNameAnimal
+//                            (infoArrayAnimalInfo.animalInfoArray.get(i).getNickNameAnimal());
+//                    animalInfoTestReplay.setAnimalWeight
+//                            (infoArrayAnimalInfo.animalInfoArray.get(i).getAnimalWeight());
+//                    personInfoTestReplay.setNamePerson
+//                            (infoArrayAnimalInfo.animalInfoArray.get(i).getPersonInfo().getNamePerson());
+//                    personInfoTestReplay.setAgePerson
+//                            (infoArrayAnimalInfo.animalInfoArray.get(i).getPersonInfo().getAgePerson());
+//                    personInfoTestReplay.setSexPerson
+//                            (infoArrayAnimalInfo.animalInfoArray.get(i).getPersonInfo().getSexPerson());
+//                    animalInfoTestReplay.setPersonInfo(personInfoTestReplay);
+//                    if (animalInfoTestReplay.equals(animalInfo1.toStringNoId())) {
+//                        System.err.println("Такое животное уже добавлено" + animalInfoTestReplay.toStringNoId());
+//                        numberOfMistakes++;
+//                    }
+//                });
+//            }
             if (numberOfMistakes > 0) {
                 System.out.println("Повторите ввод с самого начала");
-                arrayAnimal.set(0, TextInputMenu.TEXT_NICK_NAME_ANIMAL);
-                arrayAnimal.set(1, TextInputMenu.TEXT_ANIMAL_WEIGHT);
-                arrayAnimal.set(2, TextInputMenu.TEXT_NAME_PERSON);
-                arrayAnimal.set(3, TextInputMenu.TEXT_AGE_PERSON);
-                arrayAnimal.set(4, TextInputMenu.TEXT_SEX_PERSON);
+                arrayAnimal.set(0, TextInputMenuUtilities.TEXT_NICK_NAME_ANIMAL);
+                arrayAnimal.set(1, TextInputMenuUtilities.TEXT_ANIMAL_WEIGHT);
+                arrayAnimal.set(2, TextInputMenuUtilities.TEXT_NAME_PERSON);
+                arrayAnimal.set(3, TextInputMenuUtilities.TEXT_AGE_PERSON);
+                arrayAnimal.set(4, TextInputMenuUtilities.TEXT_SEX_PERSON);
             }
             if (numberOfMistakes == 0 && infoArrayAnimalInfo.sizeArrayAnimalInfo > 0) {
-                animalInfo1.setPersonInfo(personInfo1);
+                infoArrayAnimalInfo.animalInfoArray.sort(Comparator.comparing(AnimalInfo::getIdAdmin));
                 infoArrayAnimalInfo.getArrayAnimalInfo();
+                animalInfo1.setIdAnimal(infoArrayAnimalInfo.animalInfoArray.get(infoArrayAnimalInfo.animalInfoArray.size() - 1).getIdAdmin() + 1);
                 infoArrayAnimalInfo.animalInfoArray.add(animalInfo1);
                 infoArrayAnimalInfo.saveArrayAnimalInfo();
                 infoArrayAnimalInfo.saveSizeArrayList();
                 isExit = true;
             }
             if (numberOfMistakes == 0 && infoArrayAnimalInfo.sizeArrayAnimalInfo == 0) {
-                animalInfo1.setPersonInfo(personInfo1);
+                animalInfo1.setIdAnimal(1);
                 infoArrayAnimalInfo.animalInfoArray.add(animalInfo1);
                 infoArrayAnimalInfo.saveArrayAnimalInfo();
                 infoArrayAnimalInfo.saveSizeArrayList();

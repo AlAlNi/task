@@ -1,14 +1,14 @@
-package part1.lesson05.task01;
+package part1.lesson05.task01.utilities;
 
-public class TextItemInput {
+public class TextItemInputUtilities {
     private String itemTextInput;
     private String textInput;
 
-    public TextItemInput() {
+    public TextItemInputUtilities() {
 
     }
 
-    public TextItemInput(String itemTextInput, String textInput) {
+    public TextItemInputUtilities(String itemTextInput, String textInput) {
         this.itemTextInput = itemTextInput;
         this.textInput = textInput;
     }
