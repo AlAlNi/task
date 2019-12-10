@@ -5,25 +5,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class MyClassLoader extends ClassLoader {
-
-    @Override
-    public Class<?> loadClass(String name) throws ClassNotFoundException {
-        if ("SomeClass".equals(name)) {
-            return findClass(name);
-        }
-        return super.loadClass(name);
-    }
-
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
 
-        System.out.println("например " + name);
-        if ("SomeClass".equals(name)) {
+        if (Main.getClassName().equals(name)) {
             try {
-                byte[] bytes = Files.readAllBytes(Paths.get("SomeClass.java"));
-                return defineClass(name, bytes, 0, bytes.length);
+                byte[] bites = Files.readAllBytes(Paths.get("./SomeClass.class"));
+                return defineClass(name, bites, 0, bites.length);
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e);
             }
         }
         return super.findClass(name);
