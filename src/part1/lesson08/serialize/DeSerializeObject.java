@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SInObject {
+public class DeSerializeObject {
     /**
      * Из строки с данными оставляем только данные для восстановления объекта
      * @param dataString - переданная строка
