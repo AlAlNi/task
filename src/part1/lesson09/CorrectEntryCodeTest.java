@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 
-
-class MainTest {
+class CorrectEntryCodeTest {
     private static final String CLASS_NAME = "SomeClass";
     @Test
     String getClassName() {return CLASS_NAME;
