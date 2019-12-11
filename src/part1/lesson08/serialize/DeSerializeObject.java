@@ -102,7 +102,7 @@ public class DeSerializeObject {
                 if (field.getName().equals(fieldName)) {
                     setValue(object, field, fieldType, fieldObject);
                 }
-            } catch (IllegalAccessException e) {
+            } catch (IllegalAccessException | NullPointerException e) {
                 e.printStackTrace();
             }
         }
@@ -136,7 +136,7 @@ public class DeSerializeObject {
      * @param value - значение поля объекта
      * @throws IllegalAccessException - передаём в основной метод ошибку доступа к полю
      */
-    private void setValue(Object object, Field field, String type, Object value) throws IllegalAccessException {
+    private void setValue(Object object, Field field, String type, Object value) throws IllegalAccessException , NullPointerException {
 
         if (type.equals("int")) {
             field.setInt(object, Integer.parseInt(value.toString()));

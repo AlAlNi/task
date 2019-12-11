@@ -1,20 +1,20 @@
 package part1.lesson08.objects;
 
-public class SObject extends YourFather {
+public class Son extends Father {
     private transient static int count;
     private String name;
     private int age;
     private boolean sex;
 
-    public SObject(String name, int age, boolean sex) {
+    public Son(String name, int age, boolean sex) {
         this.name = name;
         this.age = age;
         this.sex = sex;
         count++;
 
-        System.out.println("SObject created. Total: " + count);
+        System.out.println("Son created. Total: " + count);
     }
-    public SObject() {
+    public Son() {
         count++;
     }
 
@@ -31,11 +31,16 @@ public class SObject extends YourFather {
     }
 
     public static void setCount(int count) {
-        SObject.count = count;
+        Son.count = count;
     }
 
     @Override
     public String toString() {
-        return "<" + this.getClass().getSimpleName() + "{Name=" + this.name + "; Age=" + this.age + "; Sex=" + this.sex + "}>";
+        return "<"
+                + this.getClass().getSimpleName()
+                + "{Name=" + this.name
+                + "; Age=" + this.age
+                + "; Sex=" + this.sex
+                + "}>";
     }
 }

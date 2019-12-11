@@ -7,7 +7,6 @@ import java.lang.reflect.Field;
 import java.util.Date;
 
 public class SerializeObject {
-
     /**
      * Проверяем является ли объект простым типом
      * @param retType - проверяемый объект
