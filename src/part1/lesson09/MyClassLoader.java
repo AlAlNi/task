@@ -7,10 +7,9 @@ import java.nio.file.Paths;
 public class MyClassLoader extends ClassLoader {
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-
         if (Main.getClassName().equals(name)) {
             try {
-                byte[] bites = Files.readAllBytes(Paths.get("./SomeClass.class"));
+                byte[] bites = Files.readAllBytes(Paths.get("src/SomeClass.class"));
                 return defineClass(name, bites, 0, bites.length);
             } catch (IOException e) {
                 System.out.println(e);

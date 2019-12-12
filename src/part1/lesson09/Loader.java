@@ -8,16 +8,16 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-class Loader {
+public class Loader {
     private final String name;
     private StringBuilder builder;
 
-    Loader(String name) {
+    public Loader(String name) {
         builder = new StringBuilder();
         this.name = name;
     }
 
-    void loading() {
+    public void loading() {
         String code = buildMethodImpl();
         javac(code);
     }
@@ -29,12 +29,12 @@ class Loader {
             String[] javacOpts = {getPath()};
             javac.run(null, null, null, javacOpts);
         } catch (IOException e) {
-            System.out.println("Ошибка компиляции " + e);
+            System.out.println("Compilation error " + e);
         }
     }
 
     private String getPath() {
-        return "./" + name + ".java";
+        return "out/production/task/part1/lesson09/" + name + ".java";
     }
 
     private String buildMethodImpl() {
@@ -47,7 +47,7 @@ class Loader {
 
     private void enterCode() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println("введите код...\nнажмите Enter");
+            System.out.println("enter code...\nclick Enter");
             String line;
             while (!"".equals(line = reader.readLine())) {
                 builder.append(line);
