@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static part1.lesson05.utilities.MainUtilities.EMPTY;
+
 /**
  * Генератор текстовых файлов из массива слов.
  * Для генерации текстов нет необходимости создавать экземпляр объекта.
@@ -99,7 +101,7 @@ public class TextGenerator {
      * @return возвращает сгенерированное предложение
      */
     private String getSentence(int size) {
-        if (size <= 2) return "";
+        if (size <= 2) return EMPTY;
         StringBuilder text = new StringBuilder();
         int maxSentenceWLength = 15; //максимальное количество слов в предложении
 
@@ -132,7 +134,7 @@ public class TextGenerator {
             }
         }
 
-        if (text.toString().isEmpty()) return "";
+        if (text.toString().isEmpty()) return EMPTY;
 
         //добавим один из знаков окончания предложения
         int end = rnd.nextInt(3);

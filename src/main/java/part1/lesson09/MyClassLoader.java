@@ -9,7 +9,7 @@ public class MyClassLoader extends ClassLoader {
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         if (Main.getClassName().equals(name)) {
             try {
-                byte[] bites = Files.readAllBytes(Paths.get("src/SomeClass.class"));
+                byte[] bites = Files.readAllBytes(Paths.get("src/part1.lesson13.SomeClass.class"));
                 return defineClass(name, bites, 0, bites.length);
             } catch (IOException e) {
                 System.out.println(e);

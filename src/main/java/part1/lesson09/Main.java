@@ -1,7 +1,7 @@
 package part1.lesson09;
 
 public class Main {
-    private static final String CLASS_NAME = "SomeClass";
+    private static final String CLASS_NAME = "part1.lesson13.SomeClass";
 
     public static String getClassName() {
         return CLASS_NAME;

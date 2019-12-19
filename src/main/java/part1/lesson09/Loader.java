@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static part1.lesson05.utilities.MainUtilities.EMPTY;
+
 public class Loader {
     private final String name;
     private StringBuilder builder;
@@ -48,7 +50,7 @@ public class Loader {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("enter code...\nclick Enter");
             String line;
-            while (!"".equals(line = reader.readLine())) {
+            while (!EMPTY.equals(line = reader.readLine())) {
                 builder.append(line);
             }
         } catch (IOException e) {
@@ -59,7 +61,7 @@ public class Loader {
     private String workerImpl() {
         return
                 "import part1.lesson09.Worker;\n" +
-                        "public class SomeClass implements Worker {\n" +
+                        "public class part1.lesson13.SomeClass implements Worker {\n" +
                         "public void doWork(){\n";
     }
 }

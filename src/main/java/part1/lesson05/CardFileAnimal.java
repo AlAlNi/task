@@ -10,17 +10,19 @@
 package part1.lesson05;
 
 
-import part1.lesson05.utilities.ItemsMenuUtilities;
+import part1.lesson05.utilities.MainUtilities;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.stream.IntStream;
 
+import static part1.lesson05.utilities.MainUtilities.EMPTY;
+
 public class CardFileAnimal {
     public static void main(String[] args) throws IOException {
-        IntStream.range(0, 7).mapToObj(ItemsMenuUtilities.ITEMS_MENU_MAP_STRING::get).forEach(System.out::print);
-        System.out.println("");
+        IntStream.range(0, 7).mapToObj(MainUtilities.ITEMS_MENU_MAP_STRING::get).forEach(System.out::print);
+        System.out.println(EMPTY);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         SearchItemsMenu searchStringInputMenu1 = new SearchItemsMenu();
         String inputText = searchStringInputMenu1.inputText(bufferedReader.readLine());

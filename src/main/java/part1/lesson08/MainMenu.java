@@ -1,7 +1,7 @@
 package part1.lesson08;
 
-import part1.lesson08.objects.Son;
-import part1.lesson08.objects.Father;
+import part1.lesson08.entity.Son;
+import part1.lesson08.entity.Father;
 import part1.lesson08.serialize.DeSerializeObject;
 import part1.lesson08.serialize.SerializeObject;
 

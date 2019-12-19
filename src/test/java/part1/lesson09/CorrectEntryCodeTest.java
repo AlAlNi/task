@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 
 class CorrectEntryCodeTest {
-    private static final String CLASS_NAME = "SomeClass";
+    private static final String CLASS_NAME = "part1.lesson13.SomeClass";
 
     @Test
     public void main() {

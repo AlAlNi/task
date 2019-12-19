@@ -1,6 +1,6 @@
 package part1.lesson05;
 
-import part1.lesson05.utilities.ItemsMenuUtilities;
+import part1.lesson05.utilities.MainUtilities;
 
 import java.io.IOException;
 
@@ -10,6 +10,6 @@ class SearchItemsMenu {
             NewAnimal newAnimal = new NewAnimal();
             newAnimal.addNewAnimal();
         }
-        return ItemsMenuUtilities.TEXT_DATA_ADD;
+        return MainUtilities.TEXT_DATA_ADD;
     }
 }

@@ -1,7 +1,7 @@
 package part1.lesson05.entity;
 
 
-import part1.lesson05.utilities.ItemsMenuUtilities;
+import part1.lesson05.utilities.MainUtilities;
 
 import java.io.Serializable;
 
@@ -25,22 +25,22 @@ public class AnimalInfo implements Serializable {
     @Override
 
     public String toString() {
-        return ItemsMenuUtilities.TEXT_NAME_PERSON
+        return MainUtilities.TEXT_NAME_PERSON
                 + personInfo.getNamePerson()
                 + " "
-                + ItemsMenuUtilities.TEXT_SEX_PERSON
+                + MainUtilities.TEXT_SEX_PERSON
                 + personInfo.getSexPerson()
                 + " "
-                + ItemsMenuUtilities.TEXT_AGE_PERSON
+                + MainUtilities.TEXT_AGE_PERSON
                 + personInfo.getAgePerson()
                 + " "
-                + ItemsMenuUtilities.TEXT_NICK_NAME_ANIMAL
+                + MainUtilities.TEXT_NICK_NAME_ANIMAL
                 + nickNameAnimal
                 + " "
-                + ItemsMenuUtilities.TEXT_ANIMAL_WEIGHT
+                + MainUtilities.TEXT_ANIMAL_WEIGHT
                 + animalWeight
                 + " "
-                + ItemsMenuUtilities.TEXT_ID_CATALOG
+                + MainUtilities.TEXT_ID_CATALOG
                 + idAdmin;
     }
 

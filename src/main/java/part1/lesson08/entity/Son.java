@@ -1,4 +1,4 @@
-package part1.lesson08.objects;
+package part1.lesson08.entity;
 
 public class Son extends Father {
     private transient static int count;

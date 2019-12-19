@@ -1,1 +1,1 @@
-<object!part1.lesson08.objects.Father{name:String:Михаил}{age:int:57}{hairy:boolean:false}{someone:Son:<object!part1.lesson08.objects.Son{count:int:1}{name:String:Нечто}{age:int:14892}{sex:boolean:true}>}>
+<object!part1.lesson08.entity.Father{name:String:Михаил}{age:int:57}{hairy:boolean:false}{someone:Son:<object!part1.lesson08.entity.Son{count:int:1}{name:String:Нечто}{age:int:14892}{sex:boolean:true}>}>

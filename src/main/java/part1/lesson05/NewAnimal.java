@@ -3,7 +3,7 @@ package part1.lesson05;
 import part1.lesson05.entity.AnimalInfo;
 import part1.lesson05.entity.PersonInfo;
 import part1.lesson05.entity.Sex;
-import part1.lesson05.utilities.ItemsMenuUtilities;
+import part1.lesson05.utilities.MainUtilities;
 import part1.lesson05.utilities.TextInputMenuUtilities;
 
 import java.io.BufferedReader;
@@ -38,14 +38,14 @@ public class NewAnimal {
                 personInfo1.setAgePerson(Integer.parseInt(arrayAnimal.get(3)));
             } catch (NumberFormatException e) {
                 System.err.println("Не коректный ввод возроста: " + arrayAnimal.get(3));
-                arrayAnimal.set(3, ItemsMenuUtilities.TEXT_AGE_PERSON);
+                arrayAnimal.set(3, MainUtilities.TEXT_AGE_PERSON);
                 numberOfMistakes++;
             }
             try {
                 animalInfo1.setAnimalWeight(Integer.parseInt(arrayAnimal.get(1)));
             } catch (NumberFormatException e) {
                 System.err.println("Не коректный ввод веса: " + arrayAnimal.get(1));
-                arrayAnimal.set(1, ItemsMenuUtilities.TEXT_ANIMAL_WEIGHT);
+                arrayAnimal.set(1, MainUtilities.TEXT_ANIMAL_WEIGHT);
                 numberOfMistakes++;
             }
             if ("man".equalsIgnoreCase(arrayAnimal.get(4)) || "мужчина".equalsIgnoreCase(arrayAnimal.get(4))) {
