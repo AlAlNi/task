@@ -20,13 +20,6 @@ public class CreationBaseUser {
                     + "    email varchar(100) NOT NULL,\n"
                     + "    description varchar(100) );"
                     + "\n"
-                    + "DROP TABLE IF EXISTS \"USER_ROLE\";"
-                    + "CREATE TABLE \"USER_ROLE\" (\n"
-                    + "    id bigserial primary key,\n"
-                    + "    user_id varchar(100) ,\n"
-                    + "    \"role_id\" varchar(100) \n"
-                    + ");"
-                    + "\n"
                     + "INSERT INTO \"USER\" (name, birthday,\"login_ID\", city, email)\n"
                     + "VALUES\n"
                     + "   ('Kolya', '1994-01-08','<null>' ,'Varoneg','Kolya@administration.ru'),\n"
@@ -109,6 +102,14 @@ public class CreationBaseUser {
              Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                      ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT)) {
             ResultSet rsu;
+            statement.execute("-- Database: entity\n"
+            + "DROP TABLE IF EXISTS \"USER_ROLE\";"
+                    + "CREATE TABLE \"USER_ROLE\" (\n"
+                    + "    id bigserial primary key,\n"
+                    + "    user_id varchar(100) ,\n"
+                    + "    \"role_id\" varchar(100) \n"
+                    + ");"
+                    + "\n");
             try (PreparedStatement preparedStatement = connection
                     .prepareStatement("SELECT * FROM \"USER\"")) {
                 rsu = preparedStatement.executeQuery();
