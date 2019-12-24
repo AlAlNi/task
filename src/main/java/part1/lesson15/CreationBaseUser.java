@@ -1,35 +1,27 @@
 package part1.lesson15;
 
-import java.sql.*;
 
-import static part1.lesson15.utilities.Utilities.*;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+
+import static java.sql.DriverManager.getConnection;
+import static java.sql.ResultSet.*;
+import static part1.lesson15.utilities.Utilities.URL_SQL_PROPERTIES;
 
 public class CreationBaseUser {
-    public static void main(String[] args) throws SQLException {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD.get());
-             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                     ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT)) {
-            statement.execute("-- Database: entity\n"
-                    + "DROP TABLE IF EXISTS \"USER\";"
-                    + "CREATE TABLE \"USER\" (\n"
-                    + "    id bigserial primary key,\n"
-                    + "    name varchar(100) NOT NULL,\n"
-                    + "    birthday date NOT NULL,\n"
-                    + "    \"login_ID\" varchar ,\n"
-                    + "    city varchar(100) NOT NULL,\n"
-                    + "    email varchar(100) NOT NULL,\n"
-                    + "    description varchar(100) );"
-                    + "\n"
-                    + "INSERT INTO \"USER\" (name, birthday,\"login_ID\", city, email)\n"
-                    + "VALUES\n"
-                    + "   ('Kolya', '1994-01-08','<null>' ,'Varoneg','Kolya@administration.ru'),\n"
-                    + "   ('Vova', '1987-02-09','<null>' , 'Minsk','Vova@clients.ru'),\n"
-                    + "   ('Sonya', '2002-03-08','<null>' , 'Tambop','Sonya@clients.ru'),\n"
-                    + "   ('Marusya', '1456-01-12','<null>' , 'Moskva','Marusya@billing.ru'),\n"
-                    + "   ('Marusya', '1956-01-12','<null>' , 'Moskva','Masha@clients.ru'),\n"
-                    + "   ('Natasha', '1456-01-12','<null>' , 'Djerjinsk','Natasha@billing.ru'),\n"
-                    + "   ('Moli', '1765-12-11','<null>' , 'Samara','Moli@administration.ru');"
-            );
+    public static void main(String[] args) throws SQLException, IOException {
+        Properties properties = new Properties();
+        properties.load(new FileReader(URL_SQL_PROPERTIES));
+        try (Connection connection = getConnection(properties.getProperty("URL"),
+                properties.getProperty("USER"),
+                properties.getProperty("PASSWORD"));
+             Statement statement = connection.createStatement(TYPE_SCROLL_INSENSITIVE,
+                     CONCUR_UPDATABLE, HOLD_CURSORS_OVER_COMMIT)) {
+            statement.execute(properties.getProperty("drop_TABL1"));
+            statement.execute(properties.getProperty("create_TABL1"));
+            statement.execute(properties.getProperty("insert_into_TABL1"));
         }
         CreationBaseUser creationBaseUser = new CreationBaseUser();
         creationBaseUser.FormatLoginId();
@@ -37,21 +29,24 @@ public class CreationBaseUser {
         creationBaseUser.FormationRoleUser();
     }
 
-    void FormatLoginId() throws SQLException {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD.get());
-             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                     ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT)) {
-            try (ResultSet rsu = statement.executeQuery("select * from \"USER\"");) {
-                statement.addBatch("DROP TABLE IF EXISTS \"ROLE\"");
-                statement.addBatch("CREATE TABLE \"ROLE\" ( id bigserial primary key, name varchar(100),"
-                        + "description varchar(100))");
-                connection.setAutoCommit(false);
-                while (rsu.next()) {
-                    if (rsu.getString("login_ID").equalsIgnoreCase("<null>")) {
-                        rsu.updateString("login_ID", rsu.getString("name")
-                                + "_"
-                                + rsu.getString("id"));
-                        rsu.updateRow();
+    void FormatLoginId() throws SQLException, IOException {
+        Properties properties = new Properties();
+        properties.load(new FileReader(URL_SQL_PROPERTIES));
+        try (Connection connection = getConnection(properties.getProperty("URL"),
+                properties.getProperty("USER"),
+                properties.getProperty("PASSWORD"));
+             Statement statement = connection.createStatement(TYPE_SCROLL_INSENSITIVE,
+                     CONCUR_UPDATABLE, HOLD_CURSORS_OVER_COMMIT)) {
+            try (ResultSet rsu = statement.executeQuery(properties.getProperty("select_TABL1"))) {
+                if (rsu.getMetaData().getColumnCount() == 7) {
+                    connection.setAutoCommit(false);
+                    while (rsu.next()) {
+                        if (rsu.getString(4).equalsIgnoreCase("<null>")) {
+                            rsu.updateString(4, rsu.getString(2)
+                                    + "_"
+                                    + rsu.getString(1));
+                            rsu.updateRow();
+                        }
                     }
                     connection.commit();
                 }
@@ -59,93 +54,76 @@ public class CreationBaseUser {
         }
     }
 
-    void FormationRole() throws SQLException {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD.get());
-             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                     ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT)) {
-            try (ResultSet rsu = statement.executeQuery("select * from \"USER\"");) {
-                statement.addBatch("DROP TABLE IF EXISTS \"ROLE\"");
-                statement.addBatch("CREATE TABLE \"ROLE\" ( id bigserial primary key, name varchar(100),"
-                        + "description varchar(100))");
-                connection.setAutoCommit(false);
-                while (rsu.next()) {
-                    if (rsu.getString("email").contains("@administration.ru")) {
-                        statement.addBatch("INSERT INTO \"ROLE\"(name) VALUES ('Administration');");
-                    }
-                    if (rsu.getString("email").contains("@clients.ru")) {
-                        statement.addBatch("INSERT INTO \"ROLE\"(name) VALUES ('clients');");
-                    }
-                    if (rsu.getString("email").contains("@billing.ru")) {
-                        statement.addBatch("INSERT INTO \"ROLE\"(name) VALUES ('billing');");
-                    }
-                }
-                statement.executeBatch();
-                connection.commit();
-            }
+    void FormationRole() throws SQLException, IOException {
+        Properties properties = new Properties();
+        properties.load(new FileReader(URL_SQL_PROPERTIES));
+        try (Connection connection = getConnection(properties.getProperty("URL"),
+                properties.getProperty("USER"),
+                properties.getProperty("PASSWORD"));
+             Statement statement = connection.createStatement(TYPE_SCROLL_INSENSITIVE,
+                     CONCUR_UPDATABLE, HOLD_CURSORS_OVER_COMMIT)) {
+            statement.addBatch(properties.getProperty("drop_TABLE2"));
+            statement.addBatch(properties.getProperty("create_TABLE2"));
+            connection.setAutoCommit(false);
+            statement.addBatch(properties.getProperty("insert_column_in_TABLE2"));
+            statement.executeBatch();
+            connection.commit();
             ResultSet rsu;
             connection.commit();
             try (PreparedStatement preparedStatement = connection
-                    .prepareStatement("SELECT * FROM \"USER\" WHERE \"name\" = ? and \"login_ID\" = ?")) {
+                    .prepareStatement(properties.getProperty("select_TABL1") + "WHERE \"name\" = ? and \"login_ID\" = ?")) {
                 preparedStatement.setString(1, "Marusya");
                 preparedStatement.setString(2, "Marusya_4");
                 rsu = preparedStatement.executeQuery();
-                while (rsu.next()) {
-                    System.out.print("name= " + rsu.getString("name"));
-                    System.out.println(" login_ID= " + rsu.getString("login_ID"));
+                if (rsu.getMetaData().getColumnCount() == 7) {
+                    while (rsu.next()) {
+                        System.out.print("name= " + rsu.getString(2));
+                        System.out.println(" login_ID= " + rsu.getString(4));
+                    }
                 }
             }
         }
     }
 
-    void FormationRoleUser() throws SQLException {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD.get());
-             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                     ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT)) {
+    void FormationRoleUser() throws SQLException, IOException {
+        Properties properties = new Properties();
+        properties.load(new FileReader(URL_SQL_PROPERTIES));
+        try (Connection connection = getConnection(properties.getProperty("URL"), properties.getProperty("USER"), properties.getProperty("PASSWORD"));
+             Statement statement = connection.createStatement(TYPE_SCROLL_INSENSITIVE,
+                     CONCUR_UPDATABLE, HOLD_CURSORS_OVER_COMMIT)) {
             ResultSet rsu;
-            statement.execute("-- Database: entity\n"
-            + "DROP TABLE IF EXISTS \"USER_ROLE\";"
-                    + "CREATE TABLE \"USER_ROLE\" (\n"
-                    + "    id bigserial primary key,\n"
-                    + "    user_id varchar(100) ,\n"
-                    + "    \"role_id\" varchar(100) \n"
-                    + ");"
-                    + "\n");
+            statement.execute(properties.getProperty("drop_TABLE3"));
+            statement.execute( properties.getProperty("create_TABLE3"));
             try (PreparedStatement preparedStatement = connection
-                    .prepareStatement("SELECT * FROM \"USER\"")) {
+                    .prepareStatement(properties.getProperty("select_TABL1"))) {
                 rsu = preparedStatement.executeQuery();
                 connection.setAutoCommit(false);
                 while (rsu.next()) {
                     statement.addBatch(
-                            "INSERT INTO \"USER_ROLE\"(\"user_id\")" +
+                            "INSERT INTO \"USER_ROLE\""+"(\"user_id\")" +
                                     "VALUES ('" + rsu.getString("login_ID") + "');");
                 }
             }
             statement.executeBatch();
             connection.commit();
             try (PreparedStatement preparedStatement = connection
-                    .prepareStatement("SELECT * FROM \"ROLE\"")) {
+                    .prepareStatement(properties.getProperty("select_TABL2"))) {
                 rsu = preparedStatement.executeQuery();
                 int counterId = 1;
-                int counterIdAdministration = 1;
-                int counterIdClients = 1;
-                int counterIdBilling = 1;
                 while (rsu.next()) {
                     if (rsu.getString("name").equalsIgnoreCase("Administration")) {
                         statement.addBatch
-                                (String.format("update \"USER_ROLE\"set \"role_id\"='%s_%d'WHERE id=%d;",
-                                        rsu.getString("name"), counterIdAdministration, counterId));
-                        counterIdAdministration++;
+                                (String.format("update \"USER_ROLE\"set \"role_id\"='%s'WHERE id=%d;",
+                                        rsu.getString("name"), counterId));
                     }
                     if (rsu.getString("name").equalsIgnoreCase("clients")) {
                         statement.addBatch
-                                (String.format("update \"USER_ROLE\"set \"role_id\"='%s_%d'WHERE id=%d;",
-                                        rsu.getString("name"), counterIdClients, counterId));
-                        counterIdClients++;
+                                (String.format("update \"USER_ROLE\"set \"role_id\"='%s'WHERE id=%d;",
+                                        rsu.getString("name"), counterId));
                     }
                     if (rsu.getString("name").equalsIgnoreCase("billing")) {
-                        statement.addBatch(String.format("update \"USER_ROLE\"set \"role_id\"='%s_%d'WHERE id=%d;",
-                                rsu.getString("name"), counterIdBilling, counterId));
-                        counterIdBilling++;
+                        statement.addBatch(String.format("update \"USER_ROLE\"set \"role_id\"='%s'WHERE id=%d;",
+                                rsu.getString("name"), counterId));
                     }
                     counterId++;
                 }

@@ -10,7 +10,7 @@ class CreationBaseUserTest {
 
     @Test
     void formatLoginId() throws SQLException {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD.get());
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                      ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT)) {
             try (ResultSet rsu = statement.executeQuery("select * from \"USER\"");) {
@@ -33,7 +33,7 @@ class CreationBaseUserTest {
 
     @Test
     void formationRole() throws SQLException {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD.get());
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                      ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT)) {
             try (ResultSet rsu = statement.executeQuery("select * from \"USER\"");) {
@@ -72,7 +72,7 @@ class CreationBaseUserTest {
 
     @Test
     void formationRoleUser() throws SQLException {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD.get());
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                      ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT)) {
             ResultSet rsu;

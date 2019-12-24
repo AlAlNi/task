@@ -12,7 +12,7 @@ class AddBaseUserTest {
     void addBaseUser() throws SQLException {
         CreationBaseUser creationBaseUser = new CreationBaseUser();
         try (
-                Connection connection = DriverManager.getConnection(URL, USER, PASSWORD.get())) {
+                Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             connection.setAutoCommit(false);
             try (PreparedStatement insertStmt = connection.prepareStatement(INSERT_SQL)) {
                 // 1 запись
@@ -38,7 +38,6 @@ class AddBaseUserTest {
                 insertStmt.setString(5, " Danya@administration.ru");
                 insertStmt.executeUpdate();
                 // Создание Savepoint
-                Savepoint savepoint = connection.setSavepoint("premium");
 
                 // 4 запись
                 insertStmt.setString(1, "Semen");
@@ -56,7 +55,7 @@ class AddBaseUserTest {
                 insertStmt.setString(5, " Danniil@clients.ru");
                 insertStmt.executeUpdate();
                 // Rollback к savepoint
-                connection.rollback(savepoint);
+
                 // Commit транзакции
                 connection.commit();
             }
