@@ -118,16 +118,4 @@ public class CreationTableMain {
             }
         }
     }
-
-    void SearchRoleUser() throws SQLException, IOException {
-        Properties properties = new Properties();
-        properties.load(new FileReader(URL_SQL_PROPERTIES));
-        try (Connection connection = getConnection(properties.getProperty("URL"), properties.getProperty("USER"), properties.getProperty("PASSWORD"))) {
-            try (Statement statement = connection.createStatement(TYPE_SCROLL_INSENSITIVE, CONCUR_UPDATABLE, HOLD_CURSORS_OVER_COMMIT)) {
-                connection.setAutoCommit(false);
-                statement.execute(properties.getProperty("select_TABLE3_ROLE_ID"));
-                connection.commit();
-            }
-        }
-    }
 }

@@ -38,5 +38,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="postgresql-42.2.9" level="project" />
+    <orderEntry type="library" name="javassist" level="project" />
   </component>
 </module>
