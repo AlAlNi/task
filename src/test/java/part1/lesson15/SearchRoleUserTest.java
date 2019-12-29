@@ -11,7 +11,7 @@ import static java.sql.DriverManager.getConnection;
 import static java.sql.ResultSet.*;
 import static part1.lesson15.utilities.Utilities.URL_SQL_PROPERTIES;
 
-class SearchRoleUser {
+class SearchRoleUserTest {
 
     @Test
     void searchUserRoleUser() throws IOException, SQLException {
@@ -23,25 +23,26 @@ class SearchRoleUser {
                 ResultSet rsu;
                 connection.commit();
                 try (PreparedStatement preparedStatement = connection.prepareStatement(properties.getProperty("select_TABLE3_ROLE_ID"))) {
+                    CreationTableMain creationTableMain = new CreationTableMain();
                     preparedStatement.setString(1,"1");
                     rsu = preparedStatement.executeQuery();
-                    System.out.println("role_id: 1");
+                    creationTableMain.SearchRole("1");
                     while (rsu.next()) {
-                        System.out.println(rsu.getString(1));
+                       creationTableMain.SearchUser(rsu.getString(1));
                     }
                     preparedStatement.setString(1,"2");
                     rsu = preparedStatement.executeQuery();
                     System.out.println();
                     System.out.println("role_id: 2");
                     while (rsu.next()) {
-                        System.out.println(rsu.getString(1));
+                        creationTableMain.SearchUser(rsu.getString(1));
                     }
                     preparedStatement.setString(1,"3");
                     rsu = preparedStatement.executeQuery();
                     System.out.println();
                     System.out.println("role_id: 3");
                     while (rsu.next()) {
-                        System.out.println(rsu.getString(1));
+                        creationTableMain.SearchUser(rsu.getString(1));
                     }
                 }
             }

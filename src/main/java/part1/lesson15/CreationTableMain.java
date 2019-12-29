@@ -118,4 +118,43 @@ public class CreationTableMain {
             }
         }
     }
+
+    void SearchUser(String userId) throws SQLException, IOException {
+        Properties properties = new Properties();
+        properties.load(new FileReader(URL_SQL_PROPERTIES));
+        try (Connection connection = getConnection(properties.getProperty("URL"), properties.getProperty("USER"), properties.getProperty("PASSWORD"))) {
+            try (Statement statement = connection.createStatement(TYPE_SCROLL_INSENSITIVE, CONCUR_UPDATABLE, HOLD_CURSORS_OVER_COMMIT)) {
+                connection.setAutoCommit(false);
+                ResultSet rsu;
+                connection.commit();
+                try (PreparedStatement preparedStatement = connection.prepareStatement(properties.getProperty("select_TABLE1_LOGIN_ID")))
+                {
+                    preparedStatement.setString(1,userId);
+                    rsu = preparedStatement.executeQuery();
+                    while (rsu.next()) {
+                        System.out.println(rsu.getString(4));
+                    }
+                }
+            }
+        }
+    }
+    void SearchRole(String role) throws SQLException, IOException {
+        Properties properties = new Properties();
+        properties.load(new FileReader(URL_SQL_PROPERTIES));
+        try (Connection connection = getConnection(properties.getProperty("URL"), properties.getProperty("USER"), properties.getProperty("PASSWORD"))) {
+            try (Statement statement = connection.createStatement(TYPE_SCROLL_INSENSITIVE, CONCUR_UPDATABLE, HOLD_CURSORS_OVER_COMMIT)) {
+                connection.setAutoCommit(false);
+                ResultSet rsu;
+                connection.commit();
+                try (PreparedStatement preparedStatement = connection.prepareStatement(properties.getProperty("select_TABLE2_NAME")))
+                {
+                    preparedStatement.setString(1,role);
+                    rsu = preparedStatement.executeQuery();
+                    while (rsu.next()) {
+                        System.out.println(rsu.getString(1));
+                    }
+                }
+            }
+        }
+    }
 }
