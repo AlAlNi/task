@@ -1,6 +1,7 @@
-package part1.lesson15;
+package part1.lesson16;
 
 import org.junit.jupiter.api.Test;
+import part1.lesson15.CreationTableMain;
 
 import java.io.FileReader;
 import java.io.IOException;

@@ -1,6 +1,7 @@
-package part1.lesson15;
+package part1.lesson16;
 
 import org.junit.jupiter.api.Test;
+import part1.lesson15.CreationTableMain;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,20 +25,20 @@ class SearchRoleUserTest {
                 connection.commit();
                 try (PreparedStatement preparedStatement = connection.prepareStatement(properties.getProperty("select_TABLE3_ROLE_ID"))) {
                     CreationTableMain creationTableMain = new CreationTableMain();
-                    preparedStatement.setString(1,"1");
+                    preparedStatement.setString(1, "1");
                     rsu = preparedStatement.executeQuery();
                     creationTableMain.searchRole("1");
                     while (rsu.next()) {
-                       creationTableMain.searchUser(rsu.getString(1));
+                        creationTableMain.searchUser(rsu.getString(1));
                     }
-                    preparedStatement.setString(1,"2");
+                    preparedStatement.setString(1, "2");
                     rsu = preparedStatement.executeQuery();
                     System.out.println();
                     System.out.println("role_id: 2");
                     while (rsu.next()) {
                         creationTableMain.searchUser(rsu.getString(1));
                     }
-                    preparedStatement.setString(1,"3");
+                    preparedStatement.setString(1, "3");
                     rsu = preparedStatement.executeQuery();
                     System.out.println();
                     System.out.println("role_id: 3");

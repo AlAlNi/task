@@ -1,17 +1,21 @@
-package part1.lesson15;
+package part1.lesson16;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-import static java.lang.System.out;
 import static java.sql.DriverManager.getConnection;
 import static java.sql.ResultSet.*;
 import static part1.lesson05.utilities.MainUtilities.EMPTY;
 import static part1.lesson15.utilities.Utilities.*;
 
 public class CreationTableMain {
+    private static Logger logger = LogManager.getLogger(CreationTableMain.class);
+
     public static void main(String[] args) throws SQLException, IOException {
         Properties properties = new Properties();
         properties.load(new FileReader(URL_SQL_PROPERTIES));
@@ -29,9 +33,9 @@ public class CreationTableMain {
                 rsu = preparedStatement.executeQuery();
                 if (rsu.getMetaData().getColumnCount() == 7) {
                     while (rsu.next()) {
-                        out.print("('" + rsu.getString(4) + "'), ");
+                        logger.info("('" + rsu.getString(4) + "') ");
                     }
-                    out.println(EMPTY);
+                    logger.info(EMPTY);
                 }
             }
             creationTableMain.formationTableRole();
@@ -39,7 +43,7 @@ public class CreationTableMain {
         }
     }
 
-    public void formatFourthColumnMainTable() throws SQLException, IOException {
+    void formatFourthColumnMainTable() throws SQLException, IOException {
         Properties properties = new Properties();
         properties.load(new FileReader(URL_SQL_PROPERTIES));
         try (Connection connection = getConnection(properties.getProperty(URL),
@@ -85,14 +89,13 @@ public class CreationTableMain {
             try (PreparedStatement preparedStatement = connection.prepareStatement(properties.getProperty("select_TABLE2"))) {
                 rsu = preparedStatement.executeQuery();
                 while (rsu.next()) {
-                    out.print(rsu.getRow() + " - ");
-                    out.println(rsu.getString(1));
+                    logger.info(rsu.getRow() + " - " + rsu.getString(1));
                 }
             }
         }
     }
 
-    public void dropDuplicatesTableRole() throws IOException, SQLException {
+    void dropDuplicatesTableRole() throws IOException, SQLException {
         Properties properties = new Properties();
         properties.load(new FileReader(URL_SQL_PROPERTIES));
         try (Connection connection = getConnection(properties.getProperty(URL),
@@ -119,7 +122,7 @@ public class CreationTableMain {
         }
     }
 
-    public void searchUser(String userId) throws SQLException, IOException {
+    void searchUser(String userId) throws SQLException, IOException {
         Properties properties = new Properties();
         properties.load(new FileReader(URL_SQL_PROPERTIES));
         try (Connection connection = getConnection(properties.getProperty(URL), properties.getProperty(USER), properties.getProperty(PASSWORD))) {
@@ -131,14 +134,14 @@ public class CreationTableMain {
                     preparedStatement.setString(1, userId);
                     rsu = preparedStatement.executeQuery();
                     while (rsu.next()) {
-                        out.println(rsu.getString(4));
+                        logger.info(rsu.getString(4));
                     }
                 }
             }
         }
     }
 
-    public void searchRole(String role) throws SQLException, IOException {
+    void searchRole(String role) throws SQLException, IOException {
         Properties properties = new Properties();
         properties.load(new FileReader(URL_SQL_PROPERTIES));
         try (Connection connection = getConnection(properties.getProperty(URL), properties.getProperty(USER), properties.getProperty(PASSWORD))) {
@@ -150,7 +153,7 @@ public class CreationTableMain {
                     preparedStatement.setString(1, role);
                     rsu = preparedStatement.executeQuery();
                     while (rsu.next()) {
-                        out.println(rsu.getString(1));
+                        logger.info(rsu.getString(1));
                     }
                 }
             }
