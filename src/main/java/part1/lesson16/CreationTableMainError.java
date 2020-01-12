@@ -10,15 +10,18 @@ import java.util.Properties;
 
 import static java.sql.DriverManager.getConnection;
 import static java.sql.ResultSet.*;
-import static part1.lesson05.utilities.MainUtilities.EMPTY;
 import static part1.lesson15.utilities.Utilities.*;
 
-public class CreationTableMain {
-    private static Logger logger = LogManager.getLogger(CreationTableMain.class);
+public class CreationTableMainError {
+    private static final Logger logger = LogManager.getLogger(CreationTableMainError.class);
 
-    public static void main(String[] args) throws SQLException, IOException {
+    public static void main(String[] args) {
         Properties properties = new Properties();
-        properties.load(new FileReader(URL_SQL_PROPERTIES));
+        try {
+            properties.load(new FileReader(URL_SQLERROR_PROPERTIES));
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
         try (Connection connection = getConnection(properties.getProperty(URL),
                 properties.getProperty(USER),
                 properties.getProperty(PASSWORD));
@@ -26,45 +29,48 @@ public class CreationTableMain {
             statement.execute(properties.getProperty("drop_TABLE_MAIN"));
             statement.execute(properties.getProperty("create_TABLE_MAIN"));
             statement.execute(properties.getProperty("insert_into_TABLE_MAIN"));
-            CreationTableMain creationTableMain = new CreationTableMain();
-            creationTableMain.formatFourthColumnMainTable();
+            CreationTableMainError creationTableMainError = new CreationTableMainError();
+            creationTableMainError.formatFourthColumnMainTable();
             ResultSet rsu;
             try (PreparedStatement preparedStatement = connection.prepareStatement(properties.getProperty("select_TABLE_MAIN"))) {
                 rsu = preparedStatement.executeQuery();
-                if (rsu.getMetaData().getColumnCount() == 7) {
-                    while (rsu.next()) {
-                        logger.info("('" + rsu.getString(4) + "') ");
-                    }
-                    logger.info(EMPTY);
+                while (rsu.next()) {
+                    logger.info("('" + rsu.getString(4) + "') ");
                 }
             }
-            creationTableMain.formationTableRole();
-            creationTableMain.formationRoleUser();
+            creationTableMainError.formationTableRole();
+            creationTableMainError.formationRoleUser();
+        } catch (SQLException | IOException e) {
+            logger.error(e.getMessage());
         }
     }
 
-    void formatFourthColumnMainTable() throws SQLException, IOException {
+    void formatFourthColumnMainTable() {
         Properties properties = new Properties();
-        properties.load(new FileReader(URL_SQL_PROPERTIES));
+        try {
+            properties.load(new FileReader(URL_SQL_PROPERTIES));
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
         try (Connection connection = getConnection(properties.getProperty(URL),
                 properties.getProperty(USER),
                 properties.getProperty(PASSWORD));
              Statement statement = connection.createStatement(TYPE_SCROLL_INSENSITIVE,
                      CONCUR_UPDATABLE, HOLD_CURSORS_OVER_COMMIT)) {
             try (ResultSet rsu = statement.executeQuery(properties.getProperty("select_TABLE_MAIN"))) {
-                if (rsu.getMetaData().getColumnCount() == 7) {
-                    connection.setAutoCommit(false);
-                    while (rsu.next()) {
-                        if (rsu.getString(4).equalsIgnoreCase("<null>")) {
-                            rsu.updateString(4, rsu.getString(2)
-                                    + "_"
-                                    + rsu.getString(1));
-                            rsu.updateRow();
-                        }
+                connection.setAutoCommit(false);
+                while (rsu.next()) {
+                    if (rsu.getString(4).equalsIgnoreCase("<null>")) {
+                        rsu.updateString(4, rsu.getString(2)
+                                + "_"
+                                + rsu.getString(1));
+                        rsu.updateRow();
                     }
-                    connection.commit();
                 }
+                connection.commit();
             }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
         }
     }
 
@@ -82,8 +88,8 @@ public class CreationTableMain {
             statement.addBatch(properties.getProperty("insert_column_in_TABLE2"));
             statement.executeBatch();
             connection.commit();
-            CreationTableMain creationTableMain = new CreationTableMain();
-            creationTableMain.dropDuplicatesTableRole();
+            CreationTableMainError creationTableMainError = new CreationTableMainError();
+            creationTableMainError.dropDuplicatesTableRole();
             ResultSet rsu;
             connection.commit();
             try (PreparedStatement preparedStatement = connection.prepareStatement(properties.getProperty("select_TABLE2"))) {
@@ -122,9 +128,13 @@ public class CreationTableMain {
         }
     }
 
-    void searchUser(String userId) throws SQLException, IOException {
+    void searchUser(String userId) {
         Properties properties = new Properties();
-        properties.load(new FileReader(URL_SQL_PROPERTIES));
+        try {
+            properties.load(new FileReader(URL_SQL_PROPERTIES));
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
         try (Connection connection = getConnection(properties.getProperty(URL), properties.getProperty(USER), properties.getProperty(PASSWORD))) {
             try (Statement statement = connection.createStatement(TYPE_SCROLL_INSENSITIVE, CONCUR_UPDATABLE, HOLD_CURSORS_OVER_COMMIT)) {
                 connection.setAutoCommit(false);
@@ -137,13 +147,21 @@ public class CreationTableMain {
                         logger.info(rsu.getString(4));
                     }
                 }
+            } catch (SQLException e) {
+                logger.error(e.getMessage());
             }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
         }
     }
 
-    void searchRole(String role) throws SQLException, IOException {
+    void searchRole(String role) {
         Properties properties = new Properties();
-        properties.load(new FileReader(URL_SQL_PROPERTIES));
+        try {
+            properties.load(new FileReader(URL_SQL_PROPERTIES));
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
         try (Connection connection = getConnection(properties.getProperty(URL), properties.getProperty(USER), properties.getProperty(PASSWORD))) {
             try (Statement statement = connection.createStatement(TYPE_SCROLL_INSENSITIVE, CONCUR_UPDATABLE, HOLD_CURSORS_OVER_COMMIT)) {
                 connection.setAutoCommit(false);
@@ -157,6 +175,8 @@ public class CreationTableMain {
                     }
                 }
             }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
         }
     }
 }

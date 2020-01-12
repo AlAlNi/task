@@ -18,7 +18,7 @@ class AddBaseUserTest {
         Properties properties = new Properties();
         properties.load(new FileReader(URL_SQL_PROPERTIES));
         try (
-                Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+                Connection connection = DriverManager.getConnection(properties.getProperty(URL), properties.getProperty(USER), properties.getProperty(PASSWORD))) {
             connection.setAutoCommit(false);
             try (PreparedStatement insertStmt = connection.prepareStatement(INSERT_SQL)) {
                 // 1 запись
@@ -60,7 +60,7 @@ class AddBaseUserTest {
                 insertStmt.setString(4, "Skolkova");
                 insertStmt.setString(5, "Danniil@clients.ru");
                 insertStmt.executeUpdate();
-                 connection.rollback(savepoint);     // Rollback к savepoint
+                connection.rollback(savepoint);     // Rollback к savepoint
                 // Commit транзакции
                 connection.commit();
                 creationTableMain.formatFourthColumnMainTable();
