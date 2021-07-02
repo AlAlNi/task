@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <JDBC name="databases" tableName="logs">
+            <DriverManager connectionString="jdbc:postgresql://localhost:5433/logdb" driverClassName="org.postgresql.Driver" username="postgres" password="1234" />
+            <Column name="date" isEventTimestamp="true" isUnicode="false"/>
+            <Column name="log_level"  pattern="%p" isUnicode="false"/>
+            <Column name="message" pattern="%m" isUnicode="false"/>
+            <Column name="exception" pattern="%c" isUnicode="false"/>
+        </JDBC>
+    </Appenders>
+    <Loggers>
+        <Root level="trace">
+            <AppenderRef ref="databases" level="INFO"/>
+            <AppenderRef ref="databases" level="ERROR"/>
+        </Root>
+    </Loggers>
+</Configuration>
